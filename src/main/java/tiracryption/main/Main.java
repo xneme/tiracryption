@@ -1,7 +1,10 @@
 package tiracryption.main;
 
+import tiracryption.ui.TextUI;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Welcome to tiracryption!");
+        TextUI ui= new TextUI();
+        ui.start();
     }
 }

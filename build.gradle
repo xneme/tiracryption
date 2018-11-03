@@ -17,6 +17,10 @@ dependencies {
 
 mainClassName = 'tiracryption.main.Main'
 
+run {
+    standardInput = System.in
+}
+
 jar {
     manifest {
         attributes 'Main-Class': 'tiracryption.main.Main'
