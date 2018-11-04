@@ -1,7 +1,7 @@
 # tiracryption
 Tietorakenteet ja algoritmit -  harjoitustyö.
 
-
+## Dokumentaatio
 <!--[Käyttöohje](/documentation/kayttoohje.md)
 -->
 [Määrittelydokumentti](/documentation/vaatimusmaarittely.md)
@@ -31,13 +31,13 @@ Tietorakenteet ja algoritmit -  harjoitustyö.
 Testit suoritetaan komennolla
 
 ```
-gradle test
+./gradlew test
 ```
 
 Testikattavuusraportti luodaan komennolla
 
 ```
-gradle test jacocoTestReport
+./gradlew test jacocoTestReport
 ```
 
 Kattavuusraporttia voi tarkastella avaamalla selaimella tiedosto _build/reports/tests/test/index.html_
@@ -47,7 +47,7 @@ Kattavuusraporttia voi tarkastella avaamalla selaimella tiedosto _build/reports/
 Komento
 
 ```
-gradle jar
+./gradlew jar
 ```
 
 generoi hakemistoon _build/libs/_ suoritettavan jar-tiedoston _tiracryption.jar_
@@ -64,11 +64,11 @@ JavaDocia voi tarkastella avaamalla selaimella tiedosto _target/site/apidocs/ind
 <!--
 ### Checkstyle
 
-Tiedostoon [checkstyle.xml](https://github.com/xneme/yet-another-ristinolla/blob/master/yet-another-ristinolla/checkstyle.xml) määrittelemät tarkistukset suoritetaan komennolla
+Tiedoston [checkstyle.xml](/config/checkstyle/checkstyle.xml) määrittelemät tarkistukset suoritetaan komennolla
 
 ```
- mvn jxr:jxr checkstyle:checkstyle
+./gradlew checkstyleMain
 ```
 
-Mahdolliset virheilmoitukset selviävät avaamalla selaimella tiedosto _target/site/checkstyle.html_
+Mahdolliset virheilmoitukset selviävät avaamalla selaimella tiedosto _build/reports/checkstyle/main.html_
 -->
