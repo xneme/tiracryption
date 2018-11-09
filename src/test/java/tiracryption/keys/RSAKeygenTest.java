@@ -9,16 +9,6 @@ public class RSAKeygenTest {
     private RSAKeygen keygen = new RSAKeygen();
     
     @Test
-    public void generatedPublicKeyIsPrime() {
-        assertEquals(true, keygen.getPublic().getKey().isProbablePrime(10));
-    }
-    
-    @Test
-    public void generatedPrivateKeyIsPrime() {
-        assertEquals(true, keygen.getPrivate().getKey().isProbablePrime(10));
-    }
-    
-    @Test
     public void generatedKeyPairHasSameMod() {
         assertEquals(true, keygen.getPrivate().getMod().equals(keygen.getPublic().getMod()));
     }

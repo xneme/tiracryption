@@ -13,7 +13,8 @@ public class RSA implements EncryptionMethod {
 
     @Override
     public String encrypt(String input) {
-        return "String encryption not implemented yet.";
+        BigInteger output = new BigInteger(input.getBytes()).modPow(key.getKey(), key.getMod());
+        return output.toString();
     }
     
     public String encrypt(BigInteger input) {
