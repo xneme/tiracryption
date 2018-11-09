@@ -35,7 +35,8 @@ jacocoTestReport {
     afterEvaluate {
         classDirectories = files(classDirectories.files.collect {
             fileTree(dir: it,
-                    exclude: ['tiracryption/main/**'])
+                    exclude: ['tiracryption/main/**',
+                              'tiracryption/ui/**'])
         })
     }
 }
