@@ -1,7 +1,5 @@
 package tiracryption.methods;
 
-import java.util.Arrays;
-
 public class Rot13 implements EncryptionMethod {
     
     @Override
