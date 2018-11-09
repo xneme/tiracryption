@@ -17,6 +17,10 @@ public class RSAKeygen {
         this.generate();
     }
 
+    public RSAKeygen() {
+        this.generate();
+    }
+    
     private void generate() {
         this.privateKey = BigInteger.valueOf(11);
         this.publicKey = BigInteger.valueOf(5);
