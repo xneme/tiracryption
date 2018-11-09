@@ -13,8 +13,8 @@ Tietorakenteet ja algoritmit -  harjoitustyö.
 ## Viikkoraportit
 [Viikko 1](/documentation/viikkoraportti1.md)
 
-<!--[Viikko 2](/documentation/viikkoraportti2.md)
--->
+[Viikko 2](/documentation/viikkoraportti2.md)
+
 <!--[Viikko 3](/documentation/viikkoraportti3.md)
 -->
 <!--[Viikko 4](/documentation/viikkoraportti4.md)
