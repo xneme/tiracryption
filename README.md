@@ -2,8 +2,8 @@
 Tietorakenteet ja algoritmit -  harjoitustyö.
 
 ## Dokumentaatio
-<!--[Käyttöohje](/documentation/kayttoohje.md)
--->
+[Käyttöohje](/documentation/kayttoohje.md)
+
 [Määrittelydokumentti](/documentation/vaatimusmaarittely.md)
 
 <!--[Arkkitehtuurikuvaus](/documentation/arkkitehtuuri.md)
@@ -15,8 +15,8 @@ Tietorakenteet ja algoritmit -  harjoitustyö.
 
 [Viikko 2](/documentation/viikkoraportti2.md)
 
-<!--[Viikko 3](/documentation/viikkoraportti3.md)
--->
+[Viikko 3](/documentation/viikkoraportti3.md)
+
 <!--[Viikko 4](/documentation/viikkoraportti4.md)
 -->
 <!--[Viikko 5](/documentation/viikkoraportti5.md)
