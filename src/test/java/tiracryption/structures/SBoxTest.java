@@ -1,30 +1,44 @@
 package tiracryption.structures;
 
-import java.math.BigInteger;
+import java.security.SecureRandom;
+import java.util.Arrays;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
-import tiracryption.methods.RSA;
 
 public class SBoxTest {
     private SBox sbox= new SBox();
     
     @Test
-    public void hex00Works() {
-        assertEquals((byte) 0x63, sbox.convert((byte) 0x00));
+    public void forwardHex00() {
+        assertEquals((byte) 0x63, sbox.forward((byte) 0x00));
     }
     
     @Test
-    public void hexFFWorks() {
-        assertEquals((byte) 0x16, sbox.convert((byte) 0xff));
+    public void forwardHexFF() {
+        assertEquals((byte) 0x16, sbox.forward((byte) 0xff));
     }
     
     @Test
-    public void hex52Works() {
-        assertEquals((byte) 0x00, sbox.convert((byte) 0x52));
+    public void forwardHex52() {
+        assertEquals((byte) 0x00, sbox.forward((byte) 0x52));
     }
     
     @Test
-    public void hex7AWorks() {
-        assertEquals((byte) 0xda, sbox.convert((byte) 0x7a));
+    public void forwardHex7A() {
+        assertEquals((byte) 0xda, sbox.forward((byte) 0x7a));
+    }
+    
+    @Test
+    public void reverseHex16() {
+        assertEquals((byte) 0xff, sbox.reverse((byte) 0x16));
+    }
+    
+    @Test
+    public void randomKeyForwardReverse() {
+        SecureRandom random = new SecureRandom();
+        byte[] key = new byte[32];
+        random.nextBytes(key);
+        
+        assertEquals(Arrays.toString(key), Arrays.toString(sbox.reverse(sbox.forward(key))));
     }
 }

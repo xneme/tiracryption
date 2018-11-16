@@ -1,13 +1,20 @@
 package tiracryption.ui;
 
+import java.io.IOException;
 import java.math.BigInteger;
+import java.nio.file.Paths;
+import java.security.SecureRandom;
+import java.util.Arrays;
 import java.util.Scanner;
 import tiracryption.keys.RSAKey;
+import tiracryption.keys.AESKey;
+import tiracryption.keys.AESKeygen;
 import tiracryption.keys.RSAKeygen;
 import tiracryption.methods.EncryptionMethod;
 import tiracryption.methods.RSA;
 import tiracryption.methods.Rot13;
 import tiracryption.methods.Rot47;
+import tiracryption.structures.SBox;
 
 public class TextUI {
 
@@ -23,7 +30,7 @@ public class TextUI {
         this.reader = reader;
     }
 
-    public void start() {
+    public void start() throws IOException {
         EncryptionMethod encryptor;
         
         System.out.println("Welcome to tiracryption!");
@@ -35,6 +42,7 @@ public class TextUI {
             } else {
                 System.out.println("4 - RSA with generated keys\n");
             }
+            System.out.println("d - debug");
             System.out.print("q - Quit Tiracryption\n\n");
             System.out.print("> ");
             String entry = reader.nextLine();
@@ -55,6 +63,8 @@ public class TextUI {
 
             } else if (entry.equals("q")) {
                 return;
+            } else if (entry.equals("d")) {
+                debug();
             } else {
                 System.out.print("Invalid selection.\n> ");
             }
@@ -158,5 +168,9 @@ public class TextUI {
         } else {
             return;
         }
+    }
+    
+    private void debug() throws IOException {
+        System.out.println("Currently empty.");
     }
 }

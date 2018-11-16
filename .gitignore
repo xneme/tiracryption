@@ -5,3 +5,4 @@ build/
 gradle.properties
 keys/
 !/src/main/java/tiracryption/keys/
+!/src/test/java/tiracryption/keys/
