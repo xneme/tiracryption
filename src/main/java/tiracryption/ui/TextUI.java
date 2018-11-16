@@ -25,7 +25,7 @@ public class TextUI {
 
     public void start() {
         EncryptionMethod encryptor;
-
+        
         System.out.println("Welcome to tiracryption!");
 
         while (true) {
