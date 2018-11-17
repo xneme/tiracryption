@@ -35,4 +35,7 @@ public class RSAKey {
         return mod;
     }
 
+    public int modByteLength() {
+        return mod.toByteArray().length;
+    }
 }

@@ -15,7 +15,7 @@ public class AESKeygen {
     }
     
     public AESKey generateAESKey() {
-        byte[] key = new byte[16];
+        byte[] key = new byte[32];
         random.nextBytes(key);
         return new AESKey(key);
     }

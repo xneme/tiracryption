@@ -1,20 +1,20 @@
 package tiracryption.ui;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.math.BigInteger;
 import java.nio.file.Paths;
-import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import tiracryption.keys.RSAKey;
-import tiracryption.keys.AESKey;
-import tiracryption.keys.AESKeygen;
 import tiracryption.keys.RSAKeygen;
 import tiracryption.methods.EncryptionMethod;
 import tiracryption.methods.RSA;
 import tiracryption.methods.Rot13;
 import tiracryption.methods.Rot47;
-import tiracryption.structures.SBox;
 
 public class TextUI {
 
@@ -32,7 +32,7 @@ public class TextUI {
 
     public void start() throws IOException {
         EncryptionMethod encryptor;
-        
+
         System.out.println("Welcome to tiracryption!");
 
         while (true) {
@@ -42,7 +42,7 @@ public class TextUI {
             } else {
                 System.out.println("4 - RSA with generated keys\n");
             }
-            System.out.println("d - debug");
+            //System.out.println("d - debug");
             System.out.print("q - Quit Tiracryption\n\n");
             System.out.print("> ");
             String entry = reader.nextLine();
@@ -138,13 +138,13 @@ public class TextUI {
         System.out.println("mod: " + gen.getPublic().getMod());
         System.out.println("");
     }
-    
+
     private void rsaWithKeys() {
         System.out.print("Do you want to encrypt or decrypt? [e/d]: ");
         String selection = reader.nextLine();
 
         if (selection.equals("e")) {
-            
+
             RSA rsa = new RSA(publicKey);
 
             System.out.println("Enter integer to be encrypted:");
@@ -155,7 +155,7 @@ public class TextUI {
             System.out.println(rsa.encrypt(new BigInteger(message)));
 
         } else if (selection.equals("d")) {
-            
+
             RSA rsa = new RSA(privateKey);
 
             System.out.println("Enter integer to be decrypted:");
@@ -169,8 +169,26 @@ public class TextUI {
             return;
         }
     }
-    
+
     private void debug() throws IOException {
-        System.out.println("Currently empty.");
+        try {
+            RandomAccessFile input = new RandomAccessFile(new File(Paths.get("testInput").toUri()), "r");
+            RandomAccessFile output = new RandomAccessFile(new File(Paths.get("testOutput").toUri()), "rw");
+
+            byte[] block = new byte[16];
+            int count;
+
+            while ((count = input.read(block)) > -1) {
+                for (int i = count; i < block.length; i++) {
+                    block[i] = 0;
+                }
+                System.out.println("Read " + count + " bytes.");
+                System.out.println(Arrays.toString(block));
+                output.write(block);
+                
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(TextUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
