@@ -49,23 +49,15 @@ public class RSA implements EncryptionMethod {
     }
 
     public byte[] encrypt(byte[] input) {
-        BigInteger data = new BigInteger(input);
+        BigInteger data = new BigInteger(addPreEncryptPaddign(input));
         byte[] output = data.modPow(key.getKey(), key.getMod()).toByteArray();
-        if (output.length < key.modByteLength()) {
-            byte[] paddedOutput = new byte[key.modByteLength()];
-            int paddingAmount = paddedOutput.length - output.length;
-            for (int i = 0; i < output.length; i++) {
-                paddedOutput[i + paddingAmount] = output[i];
-            }
-
-            return paddedOutput;
-        } else {
-            return output;
-        }
+        return addPostEncryptPadding(output);
     }
 
     public byte[] decrypt(byte[] input) {
-        return this.encrypt(input);
+        BigInteger data = new BigInteger(input);
+
+        return removePadding(data.modPow(key.getKey(), key.getMod()).toByteArray());
     }
 
     public void encrypt(Path input, Path output) {
@@ -74,7 +66,7 @@ public class RSA implements EncryptionMethod {
             RandomAccessFile outputFile = new RandomAccessFile(new File(output.toUri()), "rw");
 
             int modLength = this.key.modByteLength();
-            byte[] block = new byte[modLength - 3];
+            byte[] block = new byte[modLength - 2];
             int count;
 
             while ((count = inputFile.read(block)) > -1) {
@@ -111,5 +103,36 @@ public class RSA implements EncryptionMethod {
         } catch (IOException ex) {
             System.out.println("Error: " + ex.getMessage());
         }
+    }
+
+    private byte[] addPreEncryptPaddign(byte[] input) {
+        byte[] padded = new byte[input.length + 1];
+        padded[0] = (byte) 0x01;
+
+        for (int i = 0; i < input.length; i++) {
+            padded[i + 1] = input[i];
+        }
+
+        return padded;
+    }
+
+    private byte[] addPostEncryptPadding(byte[] input) {
+        int paddingAmount = this.key.modByteLength() - input.length;
+        
+        if (paddingAmount > 0) {
+            byte[] padded = new byte[this.key.modByteLength()];
+
+            for (int i = 0; i < input.length; i++) {
+                padded[i + paddingAmount] = input[i];
+            }
+
+            return padded;
+        }
+        
+        return input;
+    }
+
+    private byte[] removePadding(byte[] input) {
+        return Arrays.copyOfRange(input, 1, input.length);
     }
 }
