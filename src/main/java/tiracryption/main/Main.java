@@ -22,9 +22,7 @@ public class Main {
             System.out.println("done.");
 
             System.out.print("encrypting.. ");
-//            byte bytes[] = Files.readAllBytes(new File(args[2]).toPath());
-//            bytes = rsa.encrypt(bytes);
-//            Files.write(Paths.get(args[2] + ".encrypted"), bytes);
+
             rsa.encrypt(Paths.get(args[2]), Paths.get(args[2] + ".encrypted"));
             System.out.println("done.");
 
@@ -34,15 +32,7 @@ public class Main {
             System.out.println("done.");
 
             System.out.print("decrypting.. ");
-//            byte bytes[] = Files.readAllBytes(new File(args[2]).toPath());
-//            
-//            bytes = rsa.decrypt(bytes);
-//            
-//            if (args[2].contains("encrypted")) {
-//                Files.write(Paths.get(args[2].replace("encrypted", "decrypted")), bytes);
-//            } else {
-//                Files.write(Paths.get(args[2] + ".decrypted"), bytes);
-//            }
+
             if (args[2].contains("encrypted")) {
                 rsa.decrypt(Paths.get(args[2]), Paths.get(args[2].replace("encrypted", "decrypted")));
             } else {

@@ -171,24 +171,6 @@ public class TextUI {
     }
 
     private void debug() throws IOException {
-        try {
-            RandomAccessFile input = new RandomAccessFile(new File(Paths.get("testInput").toUri()), "r");
-            RandomAccessFile output = new RandomAccessFile(new File(Paths.get("testOutput").toUri()), "rw");
-
-            byte[] block = new byte[16];
-            int count;
-
-            while ((count = input.read(block)) > -1) {
-                for (int i = count; i < block.length; i++) {
-                    block[i] = 0;
-                }
-                System.out.println("Read " + count + " bytes.");
-                System.out.println(Arrays.toString(block));
-                output.write(block);
-                
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(TextUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        System.out.println("Nothing to see here!");
     }
 }
