@@ -2,9 +2,11 @@
 ## RSA komentorivikomennot
 
 ```
-java -jar tiracryption.jar generate [key path]
-java -jar tiracryption.jar encrypt <key path> <file path>
-java -jar tiracryption.jar decrypt <key path> <file path>
+java -jar tiracryption.jar RSAgenerate [key path]
+java -jar tiracryption.jar RSAencrypt <key path> <file path>
+java -jar tiracryption.jar RSAdecrypt <key path> <file path>
+java -jar tiracryption.jar AESencrypt <file path>
+java -jar tiracryption.jar AESdecrypt <file path>
 ```
 
 ## RSA komentoriviesimerkki
@@ -26,7 +28,7 @@ echo "1234567890mockAESkey123456789012" > mockAESkey
 
 Generoi RSA-avaimet komennolla
 ```
-java -jar build/libs/tiracryption.jar generate
+java -jar build/libs/tiracryption.jar RSAgenerate
 ```
 Avaimet luodaan oletusavoisesti tiedostoihin _/keys/rsakey_ ja _/keys/rsakey.pub_
 
@@ -36,7 +38,7 @@ Huom! tällä hetkellä generointi tuottaa toimivat mock-avaimet, ei satunnaises
 
 Salaa tiedosto julkisella RSA-avaimella komennolla
 ```
-java -jar build/libs/tiracryption.jar encrypt keys/rsakey.pub mockAESkey
+java -jar build/libs/tiracryption.jar RSAencrypt keys/rsakey.pub mockAESkey
 ```
 Salattu tiedosto luodaan samaan hakemistoon alkuperäisen tiedoston kanssa, samalla tiedostonimellä ja loppuliitteellä _.encrypted_
 
@@ -51,7 +53,7 @@ cat -A mockAESkey.encrypted
 
 Pura tiedoston salaus yksityisellä RSA-avaimella komennolla
 ```
-java -jar build/libs/tiracryption.jar decrypt keys/rsakey mockAESkey.encrypted
+java -jar build/libs/tiracryption.jar RSAdecrypt keys/rsakey mockAESkey.encrypted
 ```
 Epäsalattu tiedosto luodaan samaan hakemistoon alkuperäisen tiedoston kanssa, samalla tiedostonimella ja loppuliite vaihdettuja tai lisättynä _.decrypted_
 

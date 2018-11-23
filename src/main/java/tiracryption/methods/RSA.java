@@ -12,32 +12,13 @@ import java.util.logging.Logger;
 import tiracryption.keys.RSAKey;
 import tiracryption.ui.TextUI;
 
-public class RSA implements EncryptionMethod {
+public class RSA {
 
     private RSAKey key;
 
     public RSA(RSAKey key) {
         this.key = key;
     }
-
-    // STRINGS ARE NOT WORKING YET!
-    @Override
-    public String encrypt(String input) {
-        System.out.println("Input bytearray: " + Arrays.toString(input.getBytes()));
-        BigInteger output = new BigInteger(input.getBytes()).modPow(key.getKey(), key.getMod());
-        System.out.println("Output bytearray: " + Arrays.toString(output.toByteArray()));
-        System.out.println(new String(output.toByteArray()));
-        return output.toString();
-    }
-
-    @Override
-    public String decrypt(String input) {
-        System.out.println("Input bytearray: " + Arrays.toString(input.getBytes()));
-        BigInteger output = new BigInteger(input.getBytes()).modPow(key.getKey(), key.getMod());
-        System.out.println("Output bytearray: " + Arrays.toString(output.toByteArray()));
-        return new String(output.toByteArray());
-    }
-    // STRINGS ARE NOT WORKING YET!
 
     public String encrypt(BigInteger input) {
         BigInteger output = input.modPow(key.getKey(), key.getMod());
@@ -60,7 +41,7 @@ public class RSA implements EncryptionMethod {
         return removePadding(data.modPow(key.getKey(), key.getMod()).toByteArray());
     }
 
-    public void encrypt(Path input, Path output) {
+    public void encryptFile(Path input, Path output) {
         try {
             RandomAccessFile inputFile = new RandomAccessFile(new File(input.toUri()), "r");
             RandomAccessFile outputFile = new RandomAccessFile(new File(output.toUri()), "rw");
@@ -77,12 +58,16 @@ public class RSA implements EncryptionMethod {
                 }
 
             }
+            
+            inputFile.close();
+            outputFile.close();
+            
         } catch (IOException ex) {
             System.out.println("Error: " + ex.getMessage());
         }
     }
 
-    public void decrypt(Path input, Path output) {
+    public void decryptFile(Path input, Path output) {
         try {
             RandomAccessFile inputFile = new RandomAccessFile(new File(input.toUri()), "r");
             RandomAccessFile outputFile = new RandomAccessFile(new File(output.toUri()), "rw");
@@ -100,6 +85,10 @@ public class RSA implements EncryptionMethod {
                 }
 
             }
+            
+            inputFile.close();
+            outputFile.close();
+            
         } catch (IOException ex) {
             System.out.println("Error: " + ex.getMessage());
         }

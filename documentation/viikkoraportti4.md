@@ -9,3 +9,4 @@
 | 18.11. | 2   | Lisätty transformaatiometodeita AESiin |
 | 22.11. | 3   | Lisätty kierrosavainten laajentaminen AESKeyyn |
 | 23.11. | 2   | Lisätty testejä |
+| 23.11. | 6   | Tiedostojen salaus AESilla ja AES-transformaatioiden debugaus |

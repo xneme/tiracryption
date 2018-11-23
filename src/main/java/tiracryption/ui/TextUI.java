@@ -2,14 +2,9 @@ package tiracryption.ui;
 
 import java.io.IOException;
 import java.math.BigInteger;
-import java.security.SecureRandom;
-import java.util.Arrays;
 import java.util.Scanner;
-import tiracryption.keys.AESKey;
-import tiracryption.keys.AESKeygen;
 import tiracryption.keys.RSAKey;
 import tiracryption.keys.RSAKeygen;
-import tiracryption.methods.EncryptionMethod;
 import tiracryption.methods.RSA;
 import tiracryption.methods.Rot13;
 import tiracryption.methods.Rot47;
@@ -29,7 +24,6 @@ public class TextUI {
     }
 
     public void start() throws IOException {
-        EncryptionMethod encryptor;
 
         System.out.println("Welcome to tiracryption!");
 
@@ -46,9 +40,9 @@ public class TextUI {
             String entry = reader.nextLine();
 
             if (entry.equals("1")) {
-                rotUI(new Rot13());
+                rot13UI();
             } else if (entry.equals("2")) {
-                rotUI(new Rot47());
+                rot47UI();
             } else if (entry.equals("3")) {
                 rsaUI();
             } else if (entry.equals("4")) {
@@ -70,7 +64,18 @@ public class TextUI {
 
     }
 
-    private void rotUI(EncryptionMethod encryptor) {
+    private void rot13UI() {
+        Rot13 encryptor = new Rot13();
+        System.out.println("\nEnter message to be encrypted/decrypted:");
+        System.out.print("> ");
+        String message = reader.nextLine();
+
+        System.out.println("\nEncrypted/decrypted message:");
+        System.out.println(encryptor.encrypt(message));
+    }
+    
+    private void rot47UI() {
+        Rot47 encryptor = new Rot47();
         System.out.println("\nEnter message to be encrypted/decrypted:");
         System.out.print("> ");
         String message = reader.nextLine();

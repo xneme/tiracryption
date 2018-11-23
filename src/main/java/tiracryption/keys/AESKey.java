@@ -51,7 +51,6 @@ public class AESKey {
                 expandedWords[i] = keyWords[i];
             } else if (i % words == 0) {
                 byte[] roundConstant = {rc[i / words - 1], (byte) 0x00, (byte) 0x00, (byte) 0x00};
-                System.out.printf("round %d constant: %02x%02x%02x%02x\n", i, roundConstant[0], roundConstant[1], roundConstant[2], roundConstant[3]);
                 expandedWords[i] = this.xor(this.xor(expandedWords[i - words], this.rotWord(sbox.forward(expandedWords[i - 1]))), roundConstant);
             } else if (words > 6 && i % words == 4) {
                 expandedWords[i] = this.xor(expandedWords[i - words], sbox.forward(expandedWords[i - 1]));
@@ -77,7 +76,10 @@ public class AESKey {
         byte[][][] groupedKeys = new byte[expandedWords.length / 4][4][4];
 
         for (int i = 0; i < expandedWords.length; i++) {
-            groupedKeys[i / 4][i % 4] = expandedWords[i];
+            for (int j = 0; j < 4; j++) {
+                groupedKeys[i / 4][j][i % 4] = expandedWords[i][j];
+            }
+
         }
 
         return groupedKeys;
