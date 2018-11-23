@@ -1,14 +1,12 @@
 package tiracryption.ui;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.RandomAccessFile;
 import java.math.BigInteger;
-import java.nio.file.Paths;
+import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import tiracryption.keys.AESKey;
+import tiracryption.keys.AESKeygen;
 import tiracryption.keys.RSAKey;
 import tiracryption.keys.RSAKeygen;
 import tiracryption.methods.EncryptionMethod;

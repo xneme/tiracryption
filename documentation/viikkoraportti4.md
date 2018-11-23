@@ -7,3 +7,5 @@
 | 17.11. | 4   | Command line RSA toimii kaikenkokoisille tiedostoille |
 | 18.11. | 3   | Debugattu edellistä, toimii myös ei-tekstitiedostoille |
 | 18.11. | 2   | Lisätty transformaatiometodeita AESiin |
+| 22.11. | 3   | Lisätty kierrosavainten laajentaminen AESKeyyn |
+| 23.11. | 2   | Lisätty testejä |

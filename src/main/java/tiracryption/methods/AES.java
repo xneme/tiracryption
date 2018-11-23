@@ -101,12 +101,12 @@ public class AES {
         return newState;
     }
 
-    private byte[][] addRoundKey(byte[][] state, byte[] roundKey) {
+    private byte[][] addRoundKey(byte[][] state, byte[][] roundKey) {
         byte[][] newState = new byte[4][4];
 
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
-                newState[i][j] = (byte) (state[i][j] ^ roundKey[i]);
+                newState[i][j] = (byte) (state[i][j] ^ roundKey[i][j]);
             }
         }
         
