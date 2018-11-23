@@ -1,5 +1,11 @@
 # Käyttöohje
-## RSA komentorivikomennot
+
+RSA-salaus on generoiduilla avaimilla toimiva epäsymmetrinen salaus, joka soveltuu hitautensa takia lähinnä todella pienten tiedostojen, esimerkiksi AES-avainten salaukseen. AES on symmetrinen, mutta huomattavasti nopeampi salausmenetelmä. 
+Molempien parhaat puolet saa yhdistettyä kun salaa itse tiedostot ensin AES:lla ja tähän käytetyn salausavaimen vastaanottajan julkisella RSA-avaimella. Vastaanottaja taas purkaa AES-avaimen salauksen omalla privaatilla RSA-avaimellaa ja käyttää tätä tiedostojen salauksen purkamiseen.
+
+10Mt kuvan salaaminen AES-salauksella kestää muutamia sekunteja, RSA-salauksella useamman minuutin.
+
+## Komentorivikomennot
 
 ```
 java -jar tiracryption.jar RSAgenerate [key path]
@@ -9,7 +15,7 @@ java -jar tiracryption.jar AESencrypt <file path>
 java -jar tiracryption.jar AESdecrypt <file path>
 ```
 
-## RSA komentoriviesimerkki
+## Aloitus
 
 Generoi jar komennolla 
 ```
@@ -17,7 +23,7 @@ Generoi jar komennolla
 ```
 Jos tämä on ensimmäinen kerta kuin ajat _./gradlew_, latautuu gradle koneellesi, tässä saattaa kestää hetki.
 
-#  
+## RSA komentoriviesimerkki
 
 Luo salattava tiedosto esim komennolla
 ```
@@ -63,3 +69,19 @@ Tarkasta tiedoston lukukelpoisuus komennolla
 ```
 cat mockAESkey.decrypted
 ```
+
+## AES komentoriviesimerkki
+
+Salaa esimerkiksi kuvatiedosto komennolla
+```
+java -jar build/libs/tiracryption.jar AESencrypt kurkkumopo.jpg
+```
+Komento luo automaattisesti uuden AES-avaimen tiedostoon _<tiedostonnimi>.key_, ja salatun tiedoston _<tiedostonnimi>.encrypted_. Tiedostot luodaan samaan hakemistoon alkuperäisen tiedoston kanssa.
+
+#  
+
+Salaus puretaan komennolla
+```
+java -jar build/libs/tiracryption.jar AESdecrypt kurkkumopo.jpg.encrypted
+```
+Komento etsii automaattisesti tiedostoon liittyvän avaimen ja luo puretun tiedoston samaan hakemistoon, tiedostopäätteellä _.decrypted_.
