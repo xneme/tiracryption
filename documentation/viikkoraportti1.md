@@ -1,6 +1,6 @@
-## Viikkoraportti 1
+# Viikkoraportti 1
 
-# työaikakirjanpito
+## työaikakirjanpito
 | päivä | aika | mitä tein  |
 | :----:|:-----| :-----|
 | 03.11. | 3   | Projektin runko, git ja gradle, tekstiUI ja ROT13 |

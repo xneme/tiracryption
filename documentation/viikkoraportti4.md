@@ -1,6 +1,6 @@
-## Viikkoraportti 4
+# Viikkoraportti 4
 
-# työaikakirjanpito
+## työaikakirjanpito
 | päivä | aika | mitä tein  |
 | :----:|:-----| :-----|
 | 17.11. | 2   | Inverse S-Box + S-Box testit |

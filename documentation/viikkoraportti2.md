@@ -1,6 +1,6 @@
-## Viikkoraportti 2
+# Viikkoraportti 2
 
-# työaikakirjanpito
+## työaikakirjanpito
 | päivä | aika | mitä tein  |
 | :----:|:-----| :-----|
 | 07.11. | 3   | RSA:n toimintaan syventyminen |

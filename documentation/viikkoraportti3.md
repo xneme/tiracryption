@@ -1,6 +1,6 @@
-## Viikkoraportti 3
+# Viikkoraportti 3
 
-# työaikakirjanpito
+## työaikakirjanpito
 | päivä | aika | mitä tein  |
 | :----:|:-----| :-----|
 | 10.11. | 2   | Tekstimuotoisen syötteen antaminen RSA:lle |
