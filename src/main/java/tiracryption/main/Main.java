@@ -81,11 +81,13 @@ public class Main {
         } else if (args.length > 0 && args[0].equals("RSAgenerate")) {
 
             RSAKeygen gen = new RSAKeygen(new SecureRandom(), 2048);
+            System.out.print("generating key.. ");
             if (args.length > 1) {
                 gen.writeKeyFiles(Paths.get(args[1]));
             } else {
                 gen.writeKeyFiles(Paths.get("keys/rsakey"));
             }
+            System.out.println("done.");
         }
     }
 }

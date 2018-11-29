@@ -5,3 +5,4 @@
 | :----:|:-----| :-----|
 | 24.11. | 1   | Dokumentaation päivitystä |
 | 29.11. | 4   | Toimiva RSA-keygen, testien päivitystä |
+| 29.11. | 1   | Lisää testejä |
