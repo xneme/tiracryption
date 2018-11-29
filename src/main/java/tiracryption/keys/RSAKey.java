@@ -1,10 +1,13 @@
 package tiracryption.keys;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.nio.file.Path;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class RSAKey {
 
@@ -15,16 +18,21 @@ public class RSAKey {
         this.key = key;
         this.mod = mod;
     }
-    
-    public RSAKey(Path path) throws IOException {
-        File keyfile = new File(path.toUri());
-        Scanner filereader = new Scanner(keyfile);
-        String keytype = filereader.nextLine();
-        if (keytype.equals("tiracryption public key:") || keytype.equals("tiracryption private key:")) {
-            this.key = new BigInteger(filereader.nextLine());
-            this.mod = new BigInteger(filereader.nextLine());
+
+    public RSAKey(Path path) {
+        try {
+            File keyfile = new File(path.toUri());
+            Scanner filereader = new Scanner(keyfile);
+
+            String keytype = filereader.nextLine();
+            if (keytype.equals("tiracryption public key:") || keytype.equals("tiracryption private key:")) {
+                this.key = new BigInteger(filereader.nextLine());
+                this.mod = new BigInteger(filereader.nextLine());
+            }
+            
+        } catch (FileNotFoundException ex) {
+            System.out.println("Error reading file: " + ex.getMessage());
         }
-        
     }
 
     public BigInteger getKey() {

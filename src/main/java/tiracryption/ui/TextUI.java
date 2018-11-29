@@ -2,6 +2,7 @@ package tiracryption.ui;
 
 import java.io.IOException;
 import java.math.BigInteger;
+import java.security.SecureRandom;
 import java.util.Scanner;
 import tiracryption.keys.RSAKey;
 import tiracryption.keys.RSAKeygen;
@@ -130,7 +131,7 @@ public class TextUI {
     }
 
     private void rsagenUI() {
-        RSAKeygen gen = new RSAKeygen();
+        RSAKeygen gen = new RSAKeygen(new SecureRandom(), 2048);
         publicKey = gen.getPublic();
         privateKey = gen.getPrivate();
 
