@@ -7,6 +7,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.security.SecureRandom;
 
+/**
+ * Generator for RSA key pairs
+ */
 public class RSAKeygen {
     
     private BigInteger mod;
@@ -15,12 +18,21 @@ public class RSAKeygen {
     private SecureRandom random;
     private int bitLength;
 
+    /**
+     * Creates new RSA key generator
+     * 
+     * @param random random for randomness
+     * @param bitLength Key length in bits, usually 1024, 2048 or 4096
+     */
     public RSAKeygen(SecureRandom random, int bitLength) {
         this.random = random;
         this.bitLength = bitLength;
         this.generate();
     }
 
+    /**
+     * Generates new public/private RSA key pair
+     */
     public void generate() {
         BigInteger p = BigInteger.probablePrime(bitLength / 2, random);
         BigInteger q = BigInteger.probablePrime(bitLength / 2, random);
@@ -38,14 +50,32 @@ public class RSAKeygen {
         this.privateKey = this.publicKey.modInverse(phi);
     }
 
+    /**
+     * Get public key
+     * 
+     * @return
+     */
     public RSAKey getPublic() {
         return new RSAKey(publicKey, mod);
     }
 
+    /**
+     * Get private key
+     * 
+     * @return
+     */
     public RSAKey getPrivate() {
         return new RSAKey(privateKey, mod);
     }
 
+    /**
+     * Writes both public and private keys to files.
+     * Private key is written to given path, 
+     * public key is written to same path, but with filename ending in .pub
+     * 
+     * @param path Path for private key
+     * @throws IOException
+     */
     public void writeKeyFiles(Path path) throws IOException {
         if (path.getParent() != null) {
             File directory = new File(path.getParent().toUri());

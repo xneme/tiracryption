@@ -6,8 +6,7 @@ import java.nio.file.Path;
 import tiracryption.structures.SBox;
 
 /**
- * 
- * @author jehelen
+ * Key used in AES encryption, expands itself to multiple round keys.
  */
 public class AESKey {
 
@@ -15,8 +14,9 @@ public class AESKey {
     private byte[][][] roundKeys;
 
     /**
-     *
-     * @param key
+     * Create AES key using random bytes
+     * 
+     * @param key byte array of length 16, 24 or 32
      */
     public AESKey(byte[] key) {
         this.key = key;
@@ -24,8 +24,9 @@ public class AESKey {
     }
 
     /**
-     *
-     * @param path
+     * Create AES key from file
+     * 
+     * @param path Path to file containing 16, 24 or 32 byte key
      * @throws IOException
      */
     public AESKey(Path path) throws IOException {
@@ -34,7 +35,8 @@ public class AESKey {
     }
 
     /**
-     *
+     * Get key as byte array
+     * 
      * @return
      */
     public byte[] getKey() {
@@ -42,8 +44,12 @@ public class AESKey {
     }
 
     /**
-     *
-     * @return
+     * Get round keys expanded from key
+     * 11 round keys for AES-128,
+     * 13 round keys for AES-192 and
+     * 15 round keys for AES-256
+     * 
+     * @return 
      */
     public byte[][][] getRoundKeys() {
         return roundKeys;

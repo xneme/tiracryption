@@ -9,16 +9,30 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Key used in RSA encryption.
+ */
 public class RSAKey {
 
     private BigInteger key;
     private BigInteger mod;
 
+    /**
+     * Create key from given values
+     * 
+     * @param key Key value as BigInteger
+     * @param mod Modulus used with key as BigInteger
+     */
     public RSAKey(BigInteger key, BigInteger mod) {
         this.key = key;
         this.mod = mod;
     }
 
+    /**
+     * Create RSA key from file
+     * 
+     * @param path Path to key file
+     */
     public RSAKey(Path path) {
         try {
             File keyfile = new File(path.toUri());
@@ -35,14 +49,29 @@ public class RSAKey {
         }
     }
 
+    /**
+     * Get the key as BigInteger
+     * 
+     * @return
+     */
     public BigInteger getKey() {
         return key;
     }
 
+    /**
+     * Get the modulus as BigInteger
+     * 
+     * @return
+     */
     public BigInteger getMod() {
         return mod;
     }
 
+    /**
+     * Modulus length in bytes, chunks to be encrypted cannot exceed this
+     * 
+     * @return
+     */
     public int modByteLength() {
         return mod.toByteArray().length;
     }
