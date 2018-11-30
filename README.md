@@ -7,9 +7,9 @@ Tietorakenteet ja algoritmit -  harjoitustyö.
 [Määrittelydokumentti](/documentation/vaatimusmaarittely.md)
 
 <!--[Arkkitehtuurikuvaus](/documentation/arkkitehtuuri.md)
-
-[Testausdokumentti](/documentation/testaus.md)
 -->
+[Testausdokumentti](/documentation/testaus.md)
+
 ## Viikkoraportit
 [Viikko 1](/documentation/viikkoraportti1.md)
 
