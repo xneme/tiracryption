@@ -5,25 +5,46 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import tiracryption.structures.SBox;
 
+/**
+ * 
+ * @author jehelen
+ */
 public class AESKey {
 
     private byte[] key;
     private byte[][][] roundKeys;
 
+    /**
+     *
+     * @param key
+     */
     public AESKey(byte[] key) {
         this.key = key;
         this.roundKeys = this.generateRoundKeys();
     }
 
+    /**
+     *
+     * @param path
+     * @throws IOException
+     */
     public AESKey(Path path) throws IOException {
         this.key = Files.readAllBytes(path);
         this.roundKeys = this.generateRoundKeys();
     }
 
+    /**
+     *
+     * @return
+     */
     public byte[] getKey() {
         return key;
     }
 
+    /**
+     *
+     * @return
+     */
     public byte[][][] getRoundKeys() {
         return roundKeys;
     }
