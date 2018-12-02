@@ -4,12 +4,12 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.security.SecureRandom;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
+import tiracryption.structures.TiraRandom;
 
 public class AESKeygenTest {
-    private SecureRandom random = new SecureRandom();
+    private TiraRandom random = new TiraRandom();
     private AESKeygen gen = new AESKeygen(random); 
     
     @Test

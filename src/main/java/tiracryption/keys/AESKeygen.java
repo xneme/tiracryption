@@ -4,20 +4,20 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.security.SecureRandom;
+import tiracryption.structures.TiraRandom;
 
 /**
  * Generator for AES keys.
  */
 public class AESKeygen {
     
-    private SecureRandom random;
+    private TiraRandom random;
 
     /**
      *
      * @param random Random generator for randomness
      */
-    public AESKeygen(SecureRandom random) {
+    public AESKeygen(TiraRandom random) {
         this.random = random;
     }
     

@@ -9,6 +9,7 @@ import tiracryption.keys.RSAKey;
 import tiracryption.keys.RSAKeygen;
 import tiracryption.methods.AES;
 import tiracryption.methods.RSA;
+import tiracryption.structures.TiraRandom;
 import tiracryption.ui.TextUI;
 
 public class Main {
@@ -46,7 +47,7 @@ public class Main {
 
         } else if (args.length == 2 && args[0].equals("AESencrypt")) {
             System.out.print("generating key.. ");
-            AESKeygen gen = new AESKeygen(new SecureRandom());
+            AESKeygen gen = new AESKeygen(new TiraRandom());
             gen.writeKeyFile(Paths.get(args[1] + ".key"));
             System.out.println("done.");
 

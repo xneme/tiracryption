@@ -4,12 +4,12 @@ import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.file.Paths;
-import java.security.SecureRandom;
 import java.util.Arrays;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import tiracryption.keys.AESKey;
 import tiracryption.keys.AESKeygen;
+import tiracryption.structures.TiraRandom;
 
 public class AESTest {
 
@@ -53,7 +53,7 @@ public class AESTest {
     
     @Test
     public void fileEncryptionWorks() throws IOException {
-        SecureRandom rand = new SecureRandom();
+        TiraRandom rand = new TiraRandom();
         byte[] testmessage = new byte[10000];
         rand.nextBytes(testmessage);
         AESKeygen gen = new AESKeygen(rand);
