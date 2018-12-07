@@ -1,17 +1,11 @@
 package tiracryption.ui;
 
 import java.io.IOException;
-import java.math.BigInteger;
-import java.nio.file.Paths;
-import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.Scanner;
-import tiracryption.keys.RSAKey;
-import tiracryption.keys.RSAKeygen;
-import tiracryption.methods.RSA;
 import tiracryption.methods.Rot13;
 import tiracryption.methods.Rot47;
-import tiracryption.structures.TiraRandom;
+import tiracryption.structures.TiraBigInteger;
 
 public class TextUI {
 
