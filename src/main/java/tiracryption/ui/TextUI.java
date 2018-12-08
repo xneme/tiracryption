@@ -1,11 +1,9 @@
 package tiracryption.ui;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Scanner;
 import tiracryption.methods.Rot13;
 import tiracryption.methods.Rot47;
-import tiracryption.structures.TiraBigInteger;
 
 public class TextUI {
 

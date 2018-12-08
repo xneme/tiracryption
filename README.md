@@ -23,6 +23,8 @@ Tietorakenteet ja algoritmit -  harjoitustyö.
 
 [Viikko 6](/documentation/viikkoraportti6.md)
 
+[Viikko 7](/documentation/viikkoraportti7.md)
+
 ## Komentorivitoiminnot
 
 ### Testaus
