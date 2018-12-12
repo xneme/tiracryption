@@ -96,7 +96,7 @@ public class Main {
             System.out.println("done.");
             
             System.out.print("decrypting file.. ");
-            aes.decryptFile(Paths.get(args[2]), Paths.get(args[2].replace("encrypted", "decrypted")));
+            aes.decryptFile(Paths.get(args[2]), Paths.get(args[2].replace(".encrypted", "")));
             System.out.println("done.");
             
             File keyFile = Paths.get(args[2].replace(".encrypted", ".key.decrypted")).toFile();
