@@ -87,7 +87,8 @@ public class AES {
 
     public void decryptFile(Path input, Path output) {
         try {
-            RandomAccessFile inputFile = new RandomAccessFile(new File(input.toUri()), "r");
+            File encryptedFile = new File(input.toUri());
+            RandomAccessFile inputFile = new RandomAccessFile(encryptedFile, "r");
             RandomAccessFile outputFile = new RandomAccessFile(new File(output.toUri()), "rw");
 
             byte[] block = new byte[16];
@@ -105,6 +106,7 @@ public class AES {
 
             inputFile.close();
             outputFile.close();
+            encryptedFile.deleteOnExit();
 
         } catch (IOException ex) {
             System.out.println("Error: " + ex.getMessage());

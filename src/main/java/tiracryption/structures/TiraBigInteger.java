@@ -29,37 +29,7 @@ public class TiraBigInteger {
     }
 
     public TiraBigInteger add(TiraBigInteger b) {
-        Integer[] bValue = b.toIntegerArray();
-        Integer[] sumArray;
-        Integer carry = 0;
-
-        if (bValue.length >= this.value.length) {
-            sumArray = new Integer[bValue.length + 1];
-        } else {
-            sumArray = new Integer[this.value.length + 1];
-        }
-
-        int i;
-        for (i = sumArray.length - 1; i >= 0; i--) {
-            long sum = (long) carry;
-            carry = 0;
-
-            if (i - (sumArray.length - this.value.length) >= 0) {
-                sum += ((long) this.value[i - (sumArray.length - this.value.length)]) & 0xFFFFFFFFL;
-            }
-
-            if (i - (sumArray.length - bValue.length) >= 0) {
-                sum += ((long) bValue[i - (sumArray.length - bValue.length)]) & 0xFFFFFFFFL;
-            }
-
-            if ((sum & 0x100000000L) > 0) {
-                carry = 1;
-            }
-
-            sumArray[i] = (int) sum;
-        }
-
-        return new TiraBigInteger(sumArray);
+        return new TiraBigInteger(addArrays(this.value, b.toIntegerArray()));
     }
 
     public TiraBigInteger substract(TiraBigInteger b) {
@@ -216,5 +186,44 @@ public class TiraBigInteger {
         }
 
         return output;
+    }
+    
+    private Integer[] addArrays(Integer[] a, Integer[] b) {
+        Integer[] sumArray;
+        Integer carry = 0;
+
+        if (a.length >= b.length) {
+            sumArray = new Integer[a.length + 1];
+        } else {
+            sumArray = new Integer[b.length + 1];
+        }
+
+        int i;
+        for (i = sumArray.length - 1; i >= 0; i--) {
+            long sum = (long) carry;
+            carry = 0;
+
+            if (i - (sumArray.length - a.length) >= 0) {
+                sum += ((long) a[i - (sumArray.length - a.length)]) & 0xFFFFFFFFL;
+            }
+
+            if (i - (sumArray.length - b.length) >= 0) {
+                sum += ((long) b[i - (sumArray.length - b.length)]) & 0xFFFFFFFFL;
+            }
+
+            if ((sum & 0x100000000L) > 0) {
+                carry = 1;
+            }
+
+            sumArray[i] = (int) sum;
+        }
+
+        return sumArray;
+    }
+    
+    private Integer[] shiftArrayLeft(Integer[] a, int shiftAmount) {
+        Integer[] output = new Integer[a.length + shiftAmount];
+        int i;
+        return a;
     }
 }
