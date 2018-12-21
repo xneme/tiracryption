@@ -23,8 +23,7 @@ public class TextUI {
     public void start() throws IOException {
 
         System.out.println("Welcome to tiracryption!");
-        debug();
-        /*
+        
         while (true) {
             System.out.print("\nPlease select an encryption method to use:\n1 - ROT13\n2 - ROT47\n");
             //System.out.println("d - debug");
@@ -44,7 +43,6 @@ public class TextUI {
                 System.out.print("Invalid selection.\n> ");
             }
         }
-        */
 
     }
 
@@ -70,15 +68,6 @@ public class TextUI {
 
     private void debug() throws IOException {
         System.out.println("Nothing to see here!");
-        TiraBigInteger a = new TiraBigInteger("32974632786543658743657982304326");
-        TiraBigInteger b = new TiraBigInteger("FF");
-        TiraBigInteger c = new TiraBigInteger("1234567890");
-        BigInteger ba = new BigInteger("32974632786543658743657982304326", 16);
-        BigInteger bb = new BigInteger("FF", 16);
-        BigInteger bc = new BigInteger("1234567890", 16);
- 
-        System.out.println(Arrays.toString(a.divide(c).toByteArray()) + "," + Arrays.toString(a.mod(c).toByteArray()));
-        System.out.println(Arrays.toString(ba.divide(bc).toByteArray()) + "," + Arrays.toString(ba.mod(bc).toByteArray()));
-
+        
     }
 }

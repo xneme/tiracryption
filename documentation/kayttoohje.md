@@ -8,11 +8,14 @@ Molempien parhaat puolet saa yhdistettyä kun salaa itse tiedostot ensin AES:lla
 ## Komentorivikomennot
 
 ```
+java -jar tiracryption.jar help
 java -jar tiracryption.jar RSAgenerate [key path]
 java -jar tiracryption.jar RSAencrypt <key path> <file path>
 java -jar tiracryption.jar RSAdecrypt <key path> <file path>
 java -jar tiracryption.jar AESencrypt <file path>
 java -jar tiracryption.jar AESdecrypt <file path>
+java -jar tiracryption.jar PGPencrypt <key path> <file path>
+java -jar tiracryption.jar PGPdecrypt <key path> <file path>
 ```
 
 ## Aloitus
@@ -37,8 +40,6 @@ Generoi RSA-avaimet komennolla
 java -jar build/libs/tiracryption.jar RSAgenerate
 ```
 Avaimet luodaan oletusavoisesti tiedostoihin _/keys/rsakey_ ja _/keys/rsakey.pub_
-
-Huom! tällä hetkellä generointi tuottaa toimivat mock-avaimet, ei satunnaisesti laskettuja!
 
 #  
 
@@ -85,3 +86,33 @@ Salaus puretaan komennolla
 java -jar build/libs/tiracryption.jar AESdecrypt kurkkumopo.jpg.encrypted
 ```
 Komento etsii automaattisesti tiedostoon liittyvän avaimen ja luo puretun tiedoston samaan hakemistoon, tiedostopäätteellä _.decrypted_.
+
+## PGP komentoriviesimerkki
+
+Tässä yhdistetään automaattisesti kaksi edellä kuvattua toimenpidettä. 
+
+Generoi RSA-avaimet komennolla, mikäli et aiemmin tehnyt näin.
+```
+java -jar build/libs/tiracryption.jar RSAgenerate
+```
+Avaimet luodaan oletusavoisesti tiedostoihin _/keys/rsakey_ ja _/keys/rsakey.pub_
+
+#  
+
+Salaa mielivaltainentiedosto PGP-salauksella ja julkisella avaimella komennolla
+```
+java -jar build/libs/tiracryption.jar PGPencrypt keys/rsakey.pub kurkkumopo.jpg
+```
+Salattu tiedosto luodaan samaan hakemistoon alkuperäisen tiedoston kanssa, samalla tiedostonimellä ja loppuliitteellä _.encrypted_. Salattu avain on kirjoitettu samalla tiedostonimellä ja loppuliitteellä _.key.encrypted_.
+
+#  
+
+Pura tiedoston PGP-salaus yksityisellä avaimella komennolla
+```
+java -jar build/libs/tiracryption.jar PGPdecrypt keys/rsakey kurkkumopo.encrypted
+```
+Epäsalattu tiedosto luodaan samaan hakemistoon alkuperäisen tiedoston kanssa, samalla tiedostonimella ja ylimääräiset loppuliitteet poistettuna. AES-avain poistetaan automaattisesti.
+
+#  
+
+Tarkasta tiedoston lukukelpoisuus kyseisen tiedoston avaamiseen tarkoitetulla ohjelmalla.

@@ -6,8 +6,8 @@ Tietorakenteet ja algoritmit -  harjoitustyö.
 
 [Määrittelydokumentti](/documentation/vaatimusmaarittely.md)
 
-<!--[Arkkitehtuurikuvaus](/documentation/arkkitehtuuri.md)
--->
+[Toteutusdokumentti](/documentation/toteutus.md)
+
 [Testausdokumentti](/documentation/testaus.md)
 
 ## Viikkoraportit
@@ -52,16 +52,16 @@ Komento
 ```
 
 generoi hakemistoon _build/libs/_ suoritettavan jar-tiedoston _tiracryption.jar_
-<!--
+
 ### JavaDoc
 
 JavaDoc generoidaan komennolla
 
 ```
-mvn javadoc:javadoc
+./gradlew javadoc
 ```
 
-JavaDocia voi tarkastella avaamalla selaimella tiedosto _target/site/apidocs/index.html_ -->
+JavaDocia voi tarkastella avaamalla selaimella tiedosto _build/docs/javadoc/index.html_
 <!--
 ### Checkstyle
 

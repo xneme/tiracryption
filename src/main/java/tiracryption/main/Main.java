@@ -16,14 +16,10 @@ import tiracryption.ui.TextUI;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        if (args.length == 0) {
-            System.out.println("Use command line arguments for actual encrypting, see manual for details!\n");
-            TextUI ui = new TextUI();
-            ui.start();
-
-        } else if (args.length == 1 && args[0].toLowerCase().equals("help")) {
+        if (args.length == 0 || (args.length == 1 && args[0].toLowerCase().equals("help"))) {
             System.out.print("\nAvailable commands:\n\n");
             System.out.print("\u001B[1mhelp\u001B[0m\n\n");
+            System.out.print("\u001B[1mrot\u001B[0m\n\n");
             System.out.print("\u001B[1mrsagenerate\u001B[0m [key path]\n");
             System.out.print("\u001B[1mrsaencrypt\u001B[0m <key path> <file path>\n");
             System.out.print("\u001B[1mrsadecrypt\u001B[0m <key path> <file path>\n\n");
@@ -31,6 +27,10 @@ public class Main {
             System.out.print("\u001B[1maesdecrypt\u001B[0m <file path>\n\n");
             System.out.print("\u001B[1mpgpencrypt\u001B[0m <key path> <file path>\n");
             System.out.print("\u001B[1mpgpdecrypt\u001B[0m <key path> <file path>\n\n");
+            
+        } else if (args.length == 1 && args[0].toLowerCase().equals("rot")) {
+            TextUI ui = new TextUI();
+            ui.start();
             
         } else if (args.length == 3 && args[0].toLowerCase().equals("rsaencrypt")) {
             System.out.print("reading key.. ");

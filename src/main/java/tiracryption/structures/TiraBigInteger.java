@@ -324,7 +324,7 @@ public class TiraBigInteger {
         return output;
 
     }
-    
+
     private TiraBigInteger[] divideAndRemainder(TiraBigInteger b) {
         int compare = this.compareTo(b);
 
@@ -341,28 +341,38 @@ public class TiraBigInteger {
         Integer[] quotient = this.initArray(dividend.length);
         int lengthDifference = this.value.length - b.toIntegerArray().length;
         long coarse = Long.divideUnsigned(((dividend[0] & UINT32_MASK) << 32) | (dividend[1] & UINT32_MASK), ((divisor[0] & UINT32_MASK) << 32) | (divisor[1] & UINT32_MASK));
-        
+
         if (coarse > 1) {
-                dividend = this.substractArrays(dividend, this.multiplyArrays(divisor, new Integer[]{(int) coarse - 1}));
-                quotient[originalLowerLength - 1] = (int) coarse - 1;
-            }
-        
+            dividend = this.substractArrays(dividend, this.multiplyArrays(divisor, new Integer[]{(int) coarse - 1}));
+            quotient[originalLowerLength - 1] = (int) coarse - 1;
+        }
+
         while (this.compareArrays(dividend, divisor) >= 0) {
-                dividend = this.substractArrays(dividend, divisor);
-                quotient[originalLowerLength - 1]++;
-            }
+            dividend = this.substractArrays(dividend, divisor);
+            quotient[originalLowerLength - 1]++;
+        }
 
         for (int i = 0; i < lengthDifference; i++) {
-            
-            divisor = this.shiftRight(divisor, 1);
 
-            coarse = Long.divideUnsigned(((dividend[i] & UINT32_MASK) << 32) | (dividend[i+1] & UINT32_MASK), (divisor[i+1] & UINT32_MASK));
-            
-            if (coarse > 1) {
-                dividend = this.substractArrays(dividend, this.multiplyArrays(divisor, new Integer[]{(int) coarse / 2}));
-                quotient[originalLowerLength + i] += (int) coarse / 2;
+            divisor = this.shiftRight(divisor, 1);
+            while ((dividend[i] & UINT32_MASK) > 0) {
+
+                coarse = Long.divideUnsigned(((dividend[i] & UINT32_MASK) << 32) | (dividend[i + 1] & UINT32_MASK), (divisor[i + 1] & UINT32_MASK));
+
+                if (coarse > 1) {
+                    dividend = this.substractArrays(dividend, this.multiplyArrays(divisor, new Integer[]{(int) coarse / 2}));
+                    quotient[originalLowerLength + i] += (int) coarse / 2;
+                }
+
             }
 
+//            coarse = Long.divideUnsigned(((dividend[i + 1] & UINT32_MASK) << 32) | (dividend[i + 2] & UINT32_MASK), ((divisor[i + 1] & UINT32_MASK) << 32) | (divisor[i + 2] & UINT32_MASK));
+//
+//            if (coarse > 1) {
+//                dividend = this.substractArrays(dividend, this.multiplyArrays(divisor, new Integer[]{(int) coarse / 2}));
+//                quotient[originalLowerLength + i] += (int) coarse / 2;
+//            }
+            
             while (this.compareArrays(dividend, divisor) >= 0) {
                 dividend = this.substractArrays(dividend, divisor);
                 quotient[originalLowerLength + i]++;
