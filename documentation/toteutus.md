@@ -26,7 +26,7 @@ Sekä AES- että RSA-luokilla on samoilla syötteillä toimivat metodit tiedosto
 
 [Specification for the ADVANCED ENCRYPTION STANDARD (AES)](https://csrc.nist.gov/csrc/media/publications/fips/197/final/documents/fips-197.pdf)
 
-[RSA (cryptosystem) - Wikipedia The Free Encyclopedia](https://en.wikipedia.org/wiki/RSA_(cryptosystem%29)
+[RSA (cryptosystem) - Wikipedia The Free Encyclopedia](https://en.wikipedia.org/wiki/RSA_(cryptosystem) )
 
 [Pretty Good Privacy - Wikipedia The Free Encyclopedia](https://en.wikipedia.org/wiki/Pretty_Good_Privacy)
 
