@@ -9,6 +9,9 @@ import tiracryption.keys.AESKey;
 import tiracryption.structures.MixColumnLookup;
 import tiracryption.structures.SBox;
 
+/**
+ * AES encryption algorithm.
+ */
 public class AES {
 
     private AESKey key;
@@ -21,6 +24,12 @@ public class AES {
         this.mc = new MixColumnLookup();
     }
 
+    /**
+     * Encrypts a 16 byte block
+     *
+     * @param input byte[], length 16.
+     * @return
+     */
     public byte[] encrypt(byte[] input) {
         byte[][] state = this.splitBytesToState(input);
         byte[][][] roundKeys = this.key.getRoundKeys();
@@ -40,6 +49,12 @@ public class AES {
         return mergeStateToBytes(state);
     }
 
+    /**
+     * Decrypts a 16 byte block
+     *
+     * @param input byte[], length 16.
+     * @return
+     */
     public byte[] decrypt(byte[] input) {
         byte[][] state = this.splitBytesToState(input);
         byte[][][] roundKeys = this.key.getRoundKeys();
@@ -60,6 +75,11 @@ public class AES {
         return this.mergeStateToBytes(state);
     }
 
+    /**
+     * Encrypts a file.
+     * @param input Path to input file.
+     * @param output Path to output file.
+     */
     public void encryptFile(Path input, Path output) {
         try {
             RandomAccessFile inputFile = new RandomAccessFile(new File(input.toUri()), "r");
@@ -85,6 +105,11 @@ public class AES {
         }
     }
 
+    /**
+     * Decrypts a file.
+     * @param input Path to input file.
+     * @param output Path to output file.
+     */
     public void decryptFile(Path input, Path output) {
         try {
             File encryptedFile = new File(input.toUri());
@@ -112,7 +137,13 @@ public class AES {
             System.out.println("Error: " + ex.getMessage());
         }
     }
-
+    
+    /**
+     * Splits a 16 byte array to 4x4 byte array.
+     * 
+     * @param input 16 byte array.
+     * @return 4x4 byte array.
+     */
     private byte[][] splitBytesToState(byte[] input) {
         byte[][] newState = new byte[4][4];
 
@@ -123,6 +154,12 @@ public class AES {
         return newState;
     }
 
+    /**
+     * Merges a 4x4 byte array to 16 byte array.
+     * 
+     * @param input 4x4 byte array.
+     * @return 16 byte array.
+     */
     private byte[] mergeStateToBytes(byte[][] input) {
         byte[] newBytes = new byte[16];
 
@@ -133,6 +170,12 @@ public class AES {
         return newBytes;
     }
 
+    /**
+     * Performs s-box substitution to a 4x4 byte array.
+     * 
+     * @param state 4x4 byte array.
+     * @return 4x4 byte array.
+     */
     private byte[][] subBytes(byte[][] state) {
         byte[][] newState = state;
 
